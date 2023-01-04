@@ -1,0 +1,30 @@
+<!doctype>
+<html>
+<head>
+	<link rel="stylesheet" href="index.css" />
+</head>
+<body>
+	<div class="field">
+		<div class="grid1">
+		</div>
+	</div>
+	<script>
+		// Automatically generate HTML markup without animation to not clutter html.		
+		const img = document.createElement('img');
+		img.className = 'snow';
+		img.src = 'snowflake.png'
+
+		const grid1 = document.querySelector('.grid1');
+		
+		for (let i = 0; i < 25 * 10; i++) {
+			const clone = img.cloneNode();
+			grid1.append(clone);
+		}
+		
+		const grid2 = grid1.cloneNode(true);
+		grid2.className = 'grid2';
+		const field = document.querySelector('.field');
+		field.prepend(grid2);
+	</script>
+</body>
+</html>

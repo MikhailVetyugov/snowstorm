@@ -1,0 +1,108 @@
+html, body {
+	margin: 0;
+	padding: 0;
+
+	--snowflake-size: 10%;
+	--snowstorm-duration: 6s;
+}
+
+.field {
+	position: relative;
+	height: 100%;
+	overflow: hidden;
+}
+
+.grid1, .grid2 {
+	position: absolute;
+	width: calc(100% - 60px);
+	height: 100%;
+	padding: 0 0 0 30px;
+	overflow: hidden;
+	animation: snowstorm var(--snowstorm-duration) linear infinite normal;
+	transform: translateY(100%);
+}
+
+.grid2 {
+	animation-delay: calc(var(--snowstorm-duration) / 2);
+}
+
+.snow {
+	width: auto;
+	height: var(--snowflake-size);
+	animation: rotation 20s infinite alternate;
+}
+
+/*
+ All snowflakes are rotating but some of them are rotating slower.
+ Some snowflakes are changing their size.
+ Some snowflakes are smaller.
+*/
+.snow:nth-child(3n+1) {
+	animation: rotation 12s ease-in-out infinite alternate;
+
+}
+
+.snow:nth-child(3n+2) {
+	animation: size 6s infinite alternate;
+}
+
+.snow:nth-child(3n) {
+	height: calc(var(--snowflake-size)*0.8);
+}
+
+/*
+ Snowflakes have different margins from each other. This simulates randomness.
+*/
+.snow:nth-child(6n+1) {
+	margin-left: -4px;
+}
+
+.snow:nth-child(6n+2) {
+	margin-left: 3px;
+}
+
+.snow:nth-child(6n+3) {
+	margin-left: -6px;
+}
+
+.snow:nth-child(6n+4) {
+	margin-left: 7px;
+}
+
+.snow:nth-child(6n+5) {
+	margin-left: 10px;
+}
+
+.snow:nth-child(6n) {
+	margin-left: -10px;
+}
+
+@keyframes rotation {
+	0% {
+		transform: rotateZ(0deg);
+	}
+	
+	100% {
+		transform: rotateZ(180deg);
+	}
+}
+
+@keyframes size {
+	0% {
+		transform: scale(100%);
+	}
+	
+	100% {
+		transform: scale(80%);
+	}
+}
+
+@keyframes snowstorm {
+	from {
+		transform: translateY(-100%);
+	}
+	
+	to {
+		transform: translateY(100%);
+	}
+}
